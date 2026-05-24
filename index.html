@@ -1,155 +1,649 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reglès de confidentialité PostulaJob</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politique de Confidentialité — POSTULA JOB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #0a4a35;
+      --green-mid: #1D9E75;
+      --green-light: #e1f5ee;
+      --green-accent: #2fcb92;
+      --amber: #f5a623;
+      --amber-light: #fef6e4;
+      --red-light: #fff1f0;
+      --red: #e84a4a;
+      --text-primary: #111;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --border: #e2e8e5;
+      --bg: #f7faf8;
+      --white: #fff;
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 15px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: var(--green-dark);
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% -10%, rgba(47,203,146,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(47,203,146,0.15);
+      border: 1px solid rgba(47,203,146,0.35);
+      color: var(--green-accent);
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 99px;
+      margin-bottom: 1.2rem;
+    }
+    .header-badge svg { width: 13px; height: 13px; }
+    header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(26px, 5vw, 40px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    header h1 span { color: var(--green-accent); }
+    header p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.75rem;
+      font-weight: 300;
+    }
+    .header-line {
+      width: 40px;
+      height: 2px;
+      background: var(--green-accent);
+      margin: 1.5rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* ─── ALERT BANNER ─── */
+    .alert-banner {
+      background: #fff8ec;
+      border-left: 4px solid var(--amber);
+      padding: 1rem 1.5rem;
+      font-size: 13.5px;
+      color: #7a4a00;
+      line-height: 1.65;
+    }
+    .alert-banner strong { font-weight: 500; }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ─── TOC ─── */
+    .toc {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .toc-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 1rem;
+    }
+    .toc-grid a {
+      font-size: 13px;
+      color: var(--green-dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 3px 0;
+      transition: color 0.15s;
+    }
+    .toc-grid a:hover { color: var(--green-mid); }
+    .toc-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-accent);
+      flex-shrink: 0;
+    }
+
+    /* ─── SECTION ─── */
+    .section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 1.25rem;
+      transition: box-shadow 0.2s;
+    }
+    .section:hover { box-shadow: 0 4px 20px rgba(10,74,53,0.07); }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 17px;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--green-dark);
+      line-height: 1.3;
+    }
+
+    .section-body {
+      color: var(--text-secondary);
+      font-size: 14.5px;
+      line-height: 1.8;
+    }
+    .section-body p + p { margin-top: 0.75rem; }
+
+    .subsection {
+      margin-top: 1.1rem;
+    }
+    .subsection-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .subsection-title::before {
+      content: '';
+      width: 3px;
+      height: 14px;
+      background: var(--green-mid);
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    ul.bullet-list {
+      list-style: none;
+      margin-top: 0.5rem;
+      padding-left: 0;
+    }
+    ul.bullet-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    ul.bullet-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      flex-shrink: 0;
+      margin-top: 9px;
+    }
+
+    /* ─── DROITS GRID ─── */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+    .right-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+    }
+    .right-card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .right-card-title span { font-size: 14px; }
+    .right-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ─── CALLOUT ─── */
+    .callout {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      border-radius: var(--radius-sm);
+      padding: 11px 14px;
+      margin-top: 1rem;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    .callout.green {
+      background: var(--green-light);
+      color: #0a4a35;
+      border-left: 3px solid var(--green-mid);
+    }
+    .callout.amber {
+      background: var(--amber-light);
+      color: #7a4a00;
+      border-left: 3px solid var(--amber);
+    }
+    .callout.red {
+      background: var(--red-light);
+      color: #7a1a1a;
+      border-left: 3px solid var(--red);
+    }
+    .callout-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ─── CONTACT BLOCK ─── */
+    .contact-block {
+      background: var(--green-dark);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-top: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% -20%, rgba(47,203,146,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-block p {
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+      margin-bottom: 1rem;
+    }
+    .contact-block strong { color: #fff; font-weight: 500; }
+    .email-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(47,203,146,0.15);
+      border: 1px solid rgba(47,203,146,0.35);
+      color: var(--green-accent);
+      border-radius: 99px;
+      padding: 8px 18px;
+      font-size: 13.5px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .email-pill:hover { background: rgba(47,203,146,0.25); }
+    .email-pill svg { width: 14px; height: 14px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--green-dark);
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      font-weight: 300;
+    }
+    footer strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+
+    @media (max-width: 540px) {
+      .toc-grid { grid-template-columns: 1fr; }
+      .rights-grid { grid-template-columns: 1fr; }
+      header { padding: 2.5rem 1.25rem 2.25rem; }
+      .section { padding: 1.25rem; }
+    }
+  </style>
 </head>
 <body>
-    <div>
-        POLITIQUE DE CONFIDENTIALITE
 
-POSTULA JOB
-Notre application (POSTULA JOB) respecte la vie privée de ses utilisateurs. La présente politique de confidentialité explique comment nous collectons, utilisons, divulguons et protégeons vos informations lorsque vous visitez notre application mobile.
-Veuillez lire attentivement cette politique de confidentialité. SI VOUS N’ÊTES PAS D’ACCORD AVEC LES TERMES DE CETTE POLITIQUE DE CONFIDENTIALITE, VEUILLEZ NE PAS ACCEDER A L’APPLICATION.
-Nous nous réservons le droit d’apporter des modifications à cette politique de confidentialité à tout moment et pour quelque raison que ce soit.
-Nous vous avertirons de toute modification en mettant à jour la date de « Dernière mise à jour » de la présente politique de confidentialité. Nous vous encourageons à consulter régulièrement la présente politique de confidentialité  pour vous tenir informé des mises à jour. Vous serez réputé avoir pris connaissance, être soumis et avoir accepté les modifications de toute politique de confidentialité révisée.
-La présente politique de confidentialité ne s’applique pas à la boutique en ligne/mobile tierce à partir de laquelle vous installez l’application ou effectuez des paiements, y compris les articles virtuels de jeu, qui peuvent également collecter  et utiliser  des données vous concernant. Nous ne sommes pas responsables des données collectées par ces tiers.
-COLLECTE DE VOS INFORMATIONS
-Nous pouvons recueillir des informations vous concernant de diverses manières.
-Il peut s’agir de :
-Données personnelles
-Les données démographiques et autres données personnelles identifiables (adresse mail et pseudonyme) que vous nous communiquez volontairement lors de l’inscription.
-Données dérivées
+<header>
+  <div class="header-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Vie privée & données
+  </div>
+  <h1>Politique de <span>Confidentialité</span></h1>
+  <p>POSTULA JOB — Comment nous collectons, utilisons et protégeons vos données</p>
+  <div class="header-line"></div>
+</header>
 
-Informations que nos serveurs collectent automatiquement lorsque vous accédez à l’application, telles que l’identification unique de notification, l’identifiant de publicité.
-Données financières
-Informations financières telles que les numéros mobiles de paiement que nous pouvons recueillir lorsque vous souscrivez au service.
-Nous ne stockons que très peu les informations financières que nous recueillions. Autrement, toutes les informations financières sont stockées par notre processeur de paiement. Nous vous encourageons à consulter leur politique de confidentialité et à les contacter directement pour obtenir des réponses à vos questions. 
-Accès aux appareils mobiles
-Nous pouvons demander l’accès ou l’autorisation à certaines fonctionnalités de votre appareil mobile telles que l’appareil photo, la galerie photo, le dossier de téléchargement. Si vous souhaitez modifier notre accès ou nos autorisations, vous pouvez le faire dans les paramètres de votre appareil.
-Notifications push 
-Nous pouvons demander à vous envoyer des notifications push concernant votre compte ou  l’application. Si vous souhaitez refuser de recevoir ces types de communications, vous pouvez les désactiver dans les paramètres de votre appareil.
-UTILISATION DE VOS INFORMATIONS
-Le fait de disposer d’informations précises vous concernant nous permet de vous offrir une expérience fluide, efficace et personnalisée. Plus précisément, nous pouvons utiliser les informations recueillies à votre sujet via l’application pour :
-•	Créer et gérer votre compte.
-•	Vous fournir des publicités ciblées, des coupons, des bulletins d’information et d’autres informations concernant les promotions et l’application.
-•	Vous envoyez des e-mails concernant votre compte.
-•	Effectuer et gérer des paiements liés à l’application.
-•	Créer un profil personnel vous concernant afin de personnaliser davantage vos futures visites sur l’application.
-•	Augmenter l’efficacité et le fonctionnement de l’application.
-•	Surveiller et analyser l’utilisation les tendances afin d’améliorer votre expérience de l’application.
-•	Vous informer des mises à jour de l’application.
-•	Vous proposez de nouveaux produits, services, applications mobiles et/ou recommandations.
-•	Effectuer d’autres activités commerciales si nécessaire.
-•	Traiter les paiements et les remboursements.
-•	Demander des commentaires et vous contacter au sujet de votre utilisation de l’application.
-•	Résoudre les litiges et résoudre les problèmes.
-•	Vous envoyez une lettre d’information.
-      DIVULGATION DE VOS INFORMATIONS 
-Nous pouvons partager les informations que nous avons recueillies à votre sujet dans certaines situations. Vos informations peuvent être divulguées comme suit :
-Par la loi ou pour protéger des droits
-Si nous pensons que la divulgation d’informations vous concernant est nécessaire pour répondre à une procédure légale, pour enquêter ou remédier à des violations potentielles de nos politiques, ou pour protéger les droits, la propriété et la sécurité d’autrui, nous pouvons partager vos informations comme le permet ou l’exige toute loi, règle ou réglementation applicable. Cela inclut l’échange d’informations avec d’autres entités pour la protection contre la fraude et la réduction du risque de crédit.
-Fournisseurs de services tiers
-Nous pouvons partager vos informations avec des tiers qui fournissent des services pour nous ou en notre nom, notamment le traitement des paiements, l’analyse des données, l’envoi de courriers électroniques, les services d’hébergement, le service clientèle et l’assistance marketing.
+<div class="alert-banner">
+  <strong>Important :</strong> Si vous n'êtes pas d'accord avec les termes de cette politique de confidentialité, veuillez ne pas accéder à l'application. Nous nous réservons le droit de modifier cette politique à tout moment — la date de dernière mise à jour sera actualisée en conséquence.
+</div>
 
-Communications marketing
-Avec votre consentement, ou avec la possibilité pour vous de retirer votre consentement, nous pouvons partager vos informations avec des tiers à des fins de marketing, comme le permet la loi.
-Annonceurs tiers 
-Nous pouvons faire appel à des sociétés de publicité tierces pour diffuser des annonces lorsque vous visitez l’application. Ces sociétés peuvent utiliser des informations sur vos visites de l’application et d’autres sites web, contenues dans des cookies, afin de vous proposer des publicités sur des biens et services susceptibles de vous intéresser.
-Partenaires commerciaux
-Nous pouvons partager vos informations avec nos partenaires commerciaux pour vous offrir certains produits, services ou promotions.
-Autres tiers
-Nous pouvons partager vos informations avec des annonceurs et des investisseurs dans le but de réaliser des analyses commerciales générales. Nous pouvons également partager vos informations avec ces tiers à des fins de marketing, comme le permet la loi.
-Vente ou faillite
-Si nous nous réorganisons ou vendons tout ou partie de nos actifs, si nous subissons une fusion ou si nous sommes acquis par une autre entité qui nous succède. Si nous cessons nos activités ou faisons faillite, nos informations seront un actif transféré ou acquis par un tiers. Vous reconnaissez que de tels transferts peuvent se produire et que le bénéficiaire du transfert peut refuser d’honorer les engagements que nous avons pris dans la présente politique de confidentialité.
-Nous ne sommes pas responsables des actions des tiers avec lesquels vous partagez des données personnelles ou sensibles, et nous n’avons aucune autorité pour gérer ou contrôler les sollicitations de tiers. Si vous ne souhaitez plus recevoir de correspondance, d’e-mails ou d’autres communications de la part de tiers, il vous appartient de contacter directement le tiers en question.
+<div class="container">
 
-
-TECHNOLOGIE DE SUIVI
-Cookies et balises web
-Nous pouvons utiliser des cookies, des balises web, des pixels de suivi et d’autres technologies de suivi sur l’application pour aider à personnaliser l’application pour aider à personnaliser l’application et améliorer votre expérience. Lorsque vous accédez à l’application, vos informations personnelles ne sont pas collectées  par l’utilisation de technologies de suivi. La plupart des navigateurs sont configurés pour accepter les cookies, mais sachez qu’une telle action pourrait affecter la disponibilité et la fonctionnalité de l’application.
-Publicité sur internet
-En outre, nous pouvons utiliser des logiciels tiers pour diffuser des publicités  sur l’application, mettre en œuvre des campagnes de marketing par courriel et gérer d’autres initiatives de marketing interactif. Ce logiciel tiers peut utiliser des cookies ou une technologie de suivi similaire pour aider à gérer et à optimiser votre expérience en ligne avec nous.
-Analyses de sites web
-Nous pouvons également  nous associer à des fournisseurs tiers sélectionnés tels que Google Analytics pour permettre les technologies de suivi et les services de remarketing sur l’application par l’utilisation de cookies de première partie et de cookies de tiers, afin, entre autres, d’analyser et de suivre l’utilisation de l’application de l’application par les utilisateurs, de déterminer la popularité de certains contenus. En accédant à l’application, vous acceptez la collecte et l’utilisation de vos informations par ces fournisseurs tiers. Nous vous encourageons à consulter leur politique de confidentialité et à les contacter directement pour obtenir des réponses à vos questions. Nous ne transférons pas d’informations personnelles à ces fournisseurs tiers.
-Vous devez savoir que l’acquisition d’un nouvel ordinateur, l’installation d’un nouveau navigateur, la mise à niveau d’un navigateur existant, l’effacement  ou toute autre modification des fichiers de cookies de votre navigateur peuvent également effacer certains cookies, plug-ins ou paramètres de désactivation.
-SITES WEB DE TIERS
-L’application peut contenir des liens vers des sites web tiers et des applications d’intérêt, y compris des publicités et des services externes qui ne sont pas affiliés à nous. Une fois que vous avez utilisé ces liens pour quitter l’application, toute information que vous fournissez à ces tiers n’est pas couverte par la présente politique de confidentialité et nous ne pouvons pas garantir la sécurité et la confidentialité de vos informations. Avant de visiter et de fournir toute information à un site web tiers, vous devez nous informer des politiques et pratiques de confidentialité (le cas échéant) du tiers responsable de ce site web, et prendre les mesures nécessaires pour.
-
-SÉCURITÉ DE VOS INFORMATIONS
-
-Nous utilisons des mesures de sécurité administratives, techniques et physiques pour aider à protéger vos informations personnelles.
-Bien que nous ayons pris des mesures raisonnables pour sécuriser les informations personnelles que vous nous fournissez, sachez que malgré nos efforts, aucune mesures de sécurité n'est parfaite ou impénétrable, et qu'aucune méthode de transmission des données ne peut être garantie contre toute interception ou autre type d'abus. Toute information divulguée en ligne est susceptible d'être interceptée et utilisée à mauvais escient par des parties non autorisées. Par conséquent, nous ne pouvons pas garantir une sécurité totale si vous fournissez des informations personnelles.
-
-VOS DROITS CONCERNANT VOS DONNÉES PERSONNELLES
-
-Conformément aux réglementations sur la protection des données, vous disposez des droits suivants :
-
-Droit d'accès
-Vous avez le droit de demander l'accès aux données personnelles que nous détenons à votre sujet.
-
-Droit de rectification
-Vous pouvez demander la correction de toute donnée inexacte ou incomplète.
-
-Droit à l'effacement
-Vous pouvez demander la suppression de vos données personnelles dans certaines circonstances.
-
-Droit à la limitation du traitement
-Vous pouvez demander la limitation du traitement de vos données personnelles.
-
-Droit à la portabilité
-Vous avez le droit de recevoir des données personnelles dans un format structuré et couramment utilisé.
-
-Droit à l'opposition
-
-Vous pouvez vous opposer au traitement de vos données personnelles à des fins de marketing.
-
-Pour exercer ces droits, veuillez nous contacter à: postulajobinfo@gmail.com
-
-OPTIONS CONCERNANT VOS INFORMATIONS
-
-Informations sur le compte
-
-Vous pouvez à tout moment consulter l'application, modifier les informations de votre compte, résilier votre abonnement ou supprimer votre compte.
-
-Vous pouvez modifier les informations de votre compte en cliquant sur "profil".
-
-À votre demande de résiliation de l'abonnement de votre compte, vous n'aurez plus accès aux fonctionnalités payantes et aucun remboursement ne sera effectué.
-
-Lorsque vous supprimez votre compte, vos informations ne disparaîtront de nos bases de données que dans un délai de trente (30) jours. Toutefois, certaines informations peuvent être conservées dans nos fichiers afin de prévenir la fraude, de résoudre les problèmes, d'aider à toute enquête, de faire respecter nos conditions d'utilisation et/ou de se conformer aux exigences légales.
-
-Courriels et communications
-
-Si vous ne souhaitez plus recevoir de correspondance, de courriels ou d'autres communications de notre part, vous pouvez vous désengager en :
-•	Modifiant vos préférences dans les paramètres de votre compte.
-•	Cliquant sur le lien de désinscription dans nos e-mails.
-•	Nous contactant directement à: postulajobinfo@gmail.com.
-	
-POLITIQUE CONCERNANT LES MINEURS
-
-Nous ne collectons pas sciemment d'informations personnelles auprès d'enfants de moins de 13 ans. Si vous êtes un parent ou un tuteur et que vous pensez que votre enfant nous à fourni des informations personnelles, veuillez nous contacter. Si nous découvrons qu'un enfant de moins de 13 ans nous a fourni des informations personnelles, nous supprimerons ces informations de vos serveurs.
-
-CONVERSATION DES DONNÉES
-
-Nous conservons vos données personnelles aussi longtemps que nécessaire pour fournir nos services et pour les finalités décrites dans cette politique de confidentialité. Nous conservons également les données personnelles pour nous conformer à nos obligations légales, résoudre les litiges et faire appliquer nos accords.
-
-TRANSFERTS INTERNATIONAUX DE DONNÉES
-
-Vos informations, y compris les données personnelles, peuvent être transférées vers et conservées sur les ordinateurs situés en dehors de votre pays de résidence, où les lois sur la protection des données peuvent différer. Votre consentement à cette politique confidentialité suivi de votre soumission de telles informations représente votre accord à ce transfert.
-
-MODIFICATIONS DE CETTE POLITIQUE
-
-Nous pouvons mettre à jour notre politique de confidentialité de temps à autres. Nous vous informerons de tout changement en publiant la nouvelle politique de confidentialité sur cette page et en mettant à jour la date de "Dernière mise à jour ".
-
-Nous vous conseillons de consulter régulièrement cette politique de confidentialité pour prendre connaissance de toute modification. Les modifications apportées à cette politique de confidentialité entrent en vigueur lorsqu'elles sont publiées sur cette page.
-
-NOUS CONTACTER
-
-Si vous avez des questions ou des commentaires concernant cette politique de confidentialité, veuillez nous contacter à :
-
-Email: postulajobinfo@gmail.com  
-
+  <!-- SOMMAIRE -->
+  <div class="toc">
+    <div class="toc-title">Sommaire</div>
+    <div class="toc-grid">
+      <a href="#s1"><span class="toc-dot"></span>Collecte de vos informations</a>
+      <a href="#s2"><span class="toc-dot"></span>Utilisation de vos informations</a>
+      <a href="#s3"><span class="toc-dot"></span>Divulgation de vos informations</a>
+      <a href="#s4"><span class="toc-dot"></span>Technologies de suivi</a>
+      <a href="#s5"><span class="toc-dot"></span>Sites web tiers</a>
+      <a href="#s6"><span class="toc-dot"></span>Sécurité de vos informations</a>
+      <a href="#s7"><span class="toc-dot"></span>Vos droits</a>
+      <a href="#s8"><span class="toc-dot"></span>Options & contrôle</a>
+      <a href="#s9"><span class="toc-dot"></span>Politique concernant les mineurs</a>
+      <a href="#s10"><span class="toc-dot"></span>Conservation & transferts</a>
     </div>
+  </div>
+
+  <!-- S1 : COLLECTE -->
+  <div class="section" id="s1">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title">Collecte de vos informations</div>
+    </div>
+    <div class="section-body">
+      Nous pouvons recueillir des informations vous concernant de diverses manières :
+
+      <div class="subsection">
+        <div class="subsection-title">Données personnelles</div>
+        Données démographiques et informations personnelles identifiables (adresse mail, pseudonyme) que vous nous communiquez volontairement lors de l'inscription.
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Données dérivées</div>
+        Informations collectées automatiquement par nos serveurs lors de votre accès à l'application : identifiant unique de notification, identifiant publicitaire.
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Données financières</div>
+        Numéros mobiles de paiement recueillis lors de votre souscription au service. Nous ne stockons que très peu ces informations — elles sont principalement gérées par notre processeur de paiement.
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Accès aux appareils mobiles</div>
+        Nous pouvons demander l'accès à certaines fonctionnalités de votre appareil (appareil photo, galerie, dossier de téléchargement). Vous pouvez modifier ces autorisations dans les paramètres de votre appareil.
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Notifications push</div>
+        Nous pouvons vous envoyer des notifications push concernant votre compte ou l'application. Vous pouvez les désactiver dans les paramètres de votre appareil.
+      </div>
+    </div>
+  </div>
+
+  <!-- S2 : UTILISATION -->
+  <div class="section" id="s2">
+    <div class="section-header">
+      <div class="section-icon">⚙️</div>
+      <div class="section-title">Utilisation de vos informations</div>
+    </div>
+    <div class="section-body">
+      Disposer d'informations précises nous permet de vous offrir une expérience fluide et personnalisée. Vos informations peuvent être utilisées pour :
+      <ul class="bullet-list">
+        <li>Créer et gérer votre compte.</li>
+        <li>Vous envoyer des e-mails concernant votre compte.</li>
+        <li>Effectuer et gérer les paiements liés à l'application.</li>
+        <li>Créer un profil personnalisé pour améliorer votre expérience.</li>
+        <li>Surveiller et analyser les tendances d'utilisation.</li>
+        <li>Vous informer des mises à jour de l'application.</li>
+        <li>Traiter les paiements et remboursements.</li>
+        <li>Recueillir vos commentaires et résoudre les litiges.</li>
+        <li>Vous envoyer une lettre d'information (newsletter).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S3 : DIVULGATION -->
+  <div class="section" id="s3">
+    <div class="section-header">
+      <div class="section-icon">🔗</div>
+      <div class="section-title">Divulgation de vos informations</div>
+    </div>
+    <div class="section-body">
+      Vos informations peuvent être partagées dans certaines situations :
+
+      <div class="subsection">
+        <div class="subsection-title">Par la loi ou pour protéger des droits</div>
+        Si la loi l'exige ou pour répondre à une procédure légale, enquêter sur des violations de nos politiques, ou protéger les droits et la sécurité d'autrui.
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Fournisseurs de services tiers</div>
+        Avec des tiers qui fournissent des services pour nous : traitement des paiements, analyse des données, envoi d'e-mails, hébergement, service clientèle.
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Communications marketing</div>
+        Avec votre consentement, ou avec la possibilité de retirer votre consentement, vos informations peuvent être partagées à des fins marketing.
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Partenaires commerciaux</div>
+        Avec nos partenaires pour vous offrir certains produits, services ou promotions.
+      </div>
+
+      <div class="callout amber">
+        <span class="callout-icon">⚠️</span>
+        <span>En cas de vente, fusion ou faillite, vos informations peuvent être transférées à l'entité successeure. Nous ne sommes pas responsables des actions des tiers avec lesquels vous partagez directement des données.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4 : TRACKING -->
+  <div class="section" id="s4">
+    <div class="section-header">
+      <div class="section-icon">🍪</div>
+      <div class="section-title">Technologies de suivi</div>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <div class="subsection-title">Cookies et balises web</div>
+        Nous pouvons utiliser des cookies, des balises web et des pixels de suivi pour personnaliser l'application et améliorer votre expérience. Vos informations personnelles ne sont pas collectées directement via ces technologies.
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Publicité sur internet</div>
+        Des logiciels tiers peuvent être utilisés pour diffuser des publicités et gérer des campagnes marketing. Ces outils peuvent utiliser des cookies pour optimiser votre expérience.
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Analyses (ex. Google Analytics)</div>
+        Nous pouvons collaborer avec des fournisseurs d'analyse tiers pour suivre l'utilisation de l'application. En accédant à l'application, vous acceptez leur collecte de données. Nous ne leur transférons pas d'informations personnelles directement.
+      </div>
+    </div>
+  </div>
+
+  <!-- S5 : TIERS -->
+  <div class="section" id="s5">
+    <div class="section-header">
+      <div class="section-icon">🌐</div>
+      <div class="section-title">Sites web tiers</div>
+    </div>
+    <div class="section-body">
+      L'application peut contenir des liens vers des sites web ou applications tiers. Une fois que vous quittez notre application via ces liens, la présente politique de confidentialité ne s'applique plus.
+      <div class="callout red">
+        <span class="callout-icon">⚡</span>
+        <span>Nous ne pouvons pas garantir la sécurité et la confidentialité des informations que vous fournissez à des sites tiers. Consultez leurs propres politiques de confidentialité avant de partager vos données.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6 : SÉCURITÉ -->
+  <div class="section" id="s6">
+    <div class="section-header">
+      <div class="section-icon">🔐</div>
+      <div class="section-title">Sécurité de vos informations</div>
+    </div>
+    <div class="section-body">
+      Nous utilisons des mesures de sécurité administratives, techniques et physiques pour protéger vos informations personnelles.
+      <div class="callout amber">
+        <span class="callout-icon">ℹ️</span>
+        <span>Aucune mesure de sécurité n'est parfaite ou impénétrable. Toute information divulguée en ligne est susceptible d'être interceptée. Nous ne pouvons pas garantir une sécurité totale des données transmises.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S7 : DROITS -->
+  <div class="section" id="s7">
+    <div class="section-header">
+      <div class="section-icon">⚖️</div>
+      <div class="section-title">Vos droits concernant vos données</div>
+    </div>
+    <div class="section-body">
+      Conformément aux réglementations sur la protection des données, vous disposez des droits suivants :
+      <div class="rights-grid">
+        <div class="right-card">
+          <div class="right-card-title"><span>👁️</span> Droit d'accès</div>
+          <p>Demander l'accès aux données que nous détenons à votre sujet.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-card-title"><span>✏️</span> Droit de rectification</div>
+          <p>Demander la correction de toute donnée inexacte ou incomplète.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-card-title"><span>🗑️</span> Droit à l'effacement</div>
+          <p>Demander la suppression de vos données dans certaines circonstances.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-card-title"><span>⏸️</span> Droit à la limitation</div>
+          <p>Demander la limitation du traitement de vos données personnelles.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-card-title"><span>📦</span> Droit à la portabilité</div>
+          <p>Recevoir vos données dans un format structuré et couramment utilisé.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-card-title"><span>🚫</span> Droit à l'opposition</div>
+          <p>Vous opposer au traitement de vos données à des fins de marketing.</p>
+        </div>
+      </div>
+      <div class="callout green" style="margin-top: 1.1rem;">
+        <span class="callout-icon">📩</span>
+        <span>Pour exercer ces droits, contactez-nous à : <strong>postulajobinfo@gmail.com</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S8 : OPTIONS -->
+  <div class="section" id="s8">
+    <div class="section-header">
+      <div class="section-icon">🎛️</div>
+      <div class="section-title">Options concernant vos informations</div>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <div class="subsection-title">Informations sur le compte</div>
+        Vous pouvez à tout moment consulter, modifier vos informations, résilier votre abonnement ou supprimer votre compte via la section <em>"Profil"</em> de l'application. La suppression de compte prend effet sous 30 jours — certaines données peuvent être conservées pour des raisons légales ou de prévention de fraude.
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Courriels et communications</div>
+        Pour ne plus recevoir nos communications, vous pouvez :
+        <ul class="bullet-list" style="margin-top: 0.5rem;">
+          <li>Modifier vos préférences dans les paramètres de votre compte.</li>
+          <li>Cliquer sur le lien de désinscription dans nos e-mails.</li>
+          <li>Nous contacter directement à postulajobinfo@gmail.com.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- S9 : MINEURS -->
+  <div class="section" id="s9">
+    <div class="section-header">
+      <div class="section-icon">👶</div>
+      <div class="section-title">Politique concernant les mineurs</div>
+    </div>
+    <div class="section-body">
+      Nous ne collectons pas sciemment d'informations personnelles auprès d'enfants de moins de 13 ans. Si vous êtes parent ou tuteur et pensez que votre enfant nous a fourni des informations personnelles, veuillez nous contacter — nous supprimerons immédiatement ces données de nos serveurs.
+    </div>
+  </div>
+
+  <!-- S10 : CONSERVATION -->
+  <div class="section" id="s10">
+    <div class="section-header">
+      <div class="section-icon">🌍</div>
+      <div class="section-title">Conservation & transferts internationaux</div>
+    </div>
+    <div class="section-body">
+      <p>Nous conservons vos données aussi longtemps que nécessaire pour fournir nos services, respecter nos obligations légales, résoudre les litiges et faire appliquer nos accords.</p>
+      <p>Vos informations peuvent être transférées vers des serveurs situés en dehors de votre pays de résidence, où les lois sur la protection des données peuvent différer. En acceptant cette politique, vous consentez à ces transferts.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-block">
+    <p><strong>Des questions sur cette politique ?</strong><br>Notre équipe est disponible pour vous répondre.</p>
+    <a class="email-pill" href="mailto:postulajobinfo@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      postulajobinfo@gmail.com
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  <strong>POSTULA JOB</strong> — Politique de Confidentialité &nbsp;·&nbsp; Tous droits réservés
+</footer>
+
 </body>
 </html>

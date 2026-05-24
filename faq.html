@@ -1,39 +1,429 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foi aux Questions PostulaJob</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — POSTULA JOB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #0a4a35;
+      --green-mid: #1D9E75;
+      --green-light: #e1f5ee;
+      --green-accent: #2fcb92;
+      --amber: #f5a623;
+      --amber-light: #fef6e4;
+      --text-primary: #111;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --border: #e2e8e5;
+      --bg: #f7faf8;
+      --white: #fff;
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 15px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: var(--green-dark);
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% -10%, rgba(47,203,146,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(47,203,146,0.15);
+      border: 1px solid rgba(47,203,146,0.35);
+      color: var(--green-accent);
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 99px;
+      margin-bottom: 1.2rem;
+    }
+    .header-badge svg { width: 13px; height: 13px; }
+    header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    header h1 span { color: var(--green-accent); }
+    header p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.75rem;
+      font-weight: 300;
+    }
+    .header-line {
+      width: 40px;
+      height: 2px;
+      background: var(--green-accent);
+      margin: 1.5rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ─── INTRO TAG ─── */
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ─── FAQ ITEM ─── */
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .faq-item:hover { box-shadow: 0 4px 20px rgba(10,74,53,0.07); }
+
+    .faq-question {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 1.35rem 1.5rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .faq-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .faq-q-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 15.5px;
+      font-weight: 600;
+      color: var(--green-dark);
+      line-height: 1.35;
+      flex: 1;
+    }
+    .faq-chevron {
+      width: 20px;
+      height: 20px;
+      color: var(--green-mid);
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.2s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 500px; }
+
+    .faq-answer-inner {
+      padding: 0 1.5rem 1.35rem 1.5rem;
+      padding-left: calc(1.5rem + 32px + 14px);
+      color: var(--text-secondary);
+      font-size: 14.5px;
+      line-height: 1.8;
+      border-top: 1px solid var(--border);
+      padding-top: 1.1rem;
+    }
+    .faq-answer-inner ul {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+    .faq-answer-inner ul li {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      margin-bottom: 5px;
+    }
+    .faq-answer-inner ul li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      flex-shrink: 0;
+      margin-top: 9px;
+    }
+
+    /* ─── CALLOUT ─── */
+    .callout {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      border-radius: var(--radius-sm);
+      padding: 11px 13px;
+      margin-top: 0.9rem;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    .callout.green {
+      background: var(--green-light);
+      color: #0a4a35;
+      border-left: 3px solid var(--green-mid);
+    }
+    .callout.amber {
+      background: var(--amber-light);
+      color: #7a4a00;
+      border-left: 3px solid var(--amber);
+    }
+    .callout-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ─── CONTACT BLOCK ─── */
+    .contact-block {
+      background: var(--green-dark);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-top: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% -20%, rgba(47,203,146,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-block p {
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+      margin-bottom: 1rem;
+    }
+    .contact-block strong { color: #fff; font-weight: 500; }
+    .email-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(47,203,146,0.15);
+      border: 1px solid rgba(47,203,146,0.35);
+      color: var(--green-accent);
+      border-radius: 99px;
+      padding: 8px 18px;
+      font-size: 13.5px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .email-pill:hover { background: rgba(47,203,146,0.25); }
+    .email-pill svg { width: 14px; height: 14px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--green-dark);
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      font-weight: 300;
+      margin-top: 0;
+    }
+    footer strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+
+    @media (max-width: 540px) {
+      header { padding: 2.5rem 1.25rem 2.25rem; }
+      .faq-answer-inner { padding-left: 1.25rem; }
+      .faq-question { padding: 1.1rem 1.25rem; }
+    }
+  </style>
 </head>
 <body>
-    <div>Foire Aux Questions (FAQ) : Sécurité & Confidentialité
 
-1. Pourquoi dois-je créer un compte Gmail spécifique ?
+<header>
+  <div class="header-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    Centre d'aide
+  </div>
+  <h1>Foire Aux <span>Questions</span></h1>
+  <p>Sécurité & Confidentialité — POSTULA JOB</p>
+  <div class="header-line"></div>
+</header>
 
-C’est une mesure de sécurité pour vous. En créant un compte dédié (ex: nom.prenom.job@gmail.com), vous séparez votre vie privée de votre recherche d'emploi. Ainsi, l'équipe POSTULA JOB n'a accès qu'à vos échanges avec les recruteurs, et jamais à vos emails personnels, vos photos ou vos mots de passe bancaires.
+<div class="container">
 
-2. Mes données personnelles sont-elles en sécurité ?
+  <div class="section-label">6 questions fréquentes</div>
 
-Absolument. Vos données (CV, lettre de motivation, coordonnées) sont stockées sur des serveurs sécurisés et ne sont utilisées que pour postuler en votre nom. Nous ne revendons jamais vos informations à des tiers ou à des agences de publicité.
+  <!-- Q1 -->
+  <div class="faq-item open">
+    <div class="faq-question" onclick="toggle(this)">
+      <div class="faq-num">1</div>
+      <div class="faq-q-text">Pourquoi dois-je créer un compte Gmail spécifique ?</div>
+      <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        C'est une mesure de sécurité pour vous. En créant un compte dédié (ex : <em>nom.prenom.job@gmail.com</em>), vous séparez votre vie privée de votre recherche d'emploi. Ainsi, l'équipe POSTULA JOB n'a accès qu'à vos échanges avec les recruteurs, et jamais à vos emails personnels, vos photos ou vos mots de passe bancaires.
+      </div>
+    </div>
+  </div>
 
-3. Qui a accès à mon compte Gmail de postulation ?
+  <!-- Q2 -->
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggle(this)">
+      <div class="faq-num">2</div>
+      <div class="faq-q-text">Mes données personnelles sont-elles en sécurité ?</div>
+      <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        Absolument. Vos données (CV, lettre de motivation, coordonnées) sont stockées sur des serveurs sécurisés et ne sont utilisées que pour postuler en votre nom.
+        <div class="callout green">
+          <span class="callout-icon">🔒</span>
+          <span>Nous ne revendons jamais vos informations à des tiers ou à des agences de publicité.</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-Seul le consultant de l'équipe POSTULA JOB en charge de votre dossier possède vos identifiants. Chaque accès est tracé en interne pour garantir une sécurité maximale. Une fois votre abonnement terminé, nous vous recommandons de changer votre mot de passe pour reprendre le contrôle total du compte.
+  <!-- Q3 -->
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggle(this)">
+      <div class="faq-num">3</div>
+      <div class="faq-q-text">Qui a accès à mon compte Gmail de postulation ?</div>
+      <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        Seul le consultant de l'équipe POSTULA JOB en charge de votre dossier possède vos identifiants. Chaque accès est tracé en interne pour garantir une sécurité maximale.
+        <div class="callout amber">
+          <span class="callout-icon">🔑</span>
+          <span>Une fois votre abonnement terminé, nous vous recommandons de <strong>changer votre mot de passe</strong> pour reprendre le contrôle total du compte.</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-4. Puis-je suivre ce que vous envoyez en mon nom ?
+  <!-- Q4 -->
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggle(this)">
+      <div class="faq-num">4</div>
+      <div class="faq-q-text">Puis-je suivre ce que vous envoyez en mon nom ?</div>
+      <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        Oui, à 100 %. C'est le principe de transparence de POSTULA JOB :
+        <ul>
+          <li>Vous pouvez vous connecter à votre compte Gmail dédié à tout moment pour lire les échanges.</li>
+          <li>Chaque candidature est répertoriée en temps réel sur votre tableau de bord dans l'application.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-Oui, à 100%. C’est le principe de transparence de POSTULA JOB :
-Vous pouvez vous connecter à votre compte Gmail dédié à tout moment pour lire les échanges.
-Chaque candidature est répertoriée en temps réel sur votre tableau de bord dans l'application.
+  <!-- Q5 -->
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggle(this)">
+      <div class="faq-num">5</div>
+      <div class="faq-q-text">Que faites-vous de mes documents après ma recherche ?</div>
+      <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        Conformément à la protection des données (RGPD), vous disposez d'un <strong>droit à l'oubli</strong>. Sur simple demande ou après une période d'inactivité prolongée, nous supprimons définitivement vos documents de nos serveurs.
+      </div>
+    </div>
+  </div>
 
-5. Que faites-vous de mes documents après ma recherche ?
+  <!-- Q6 -->
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggle(this)">
+      <div class="faq-num">6</div>
+      <div class="faq-q-text">Est-ce que les recruteurs sauront que c'est une application qui postule ?</div>
+      <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="faq-answer">
+      <div class="faq-answer-inner">
+        Non. Nous agissons comme votre assistant personnel. Les mails sont rédigés de manière humaine et professionnelle, sans aucune mention publicitaire pour notre application.
+        <div class="callout green">
+          <span class="callout-icon">✅</span>
+          <span>Pour le recruteur, c'est vous qui postulez avec un soin particulier.</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-Conformément à la protection des données (RGPD), vous disposez d'un "droit à l'oubli". Sur simple demande ou après une période d'inactivité prolongée, nous supprimons définitivement vos documents de nos serveurs.
-
-6. Est-ce que les recruteurs sauront que c'est une application qui postule ?
-
-Non. Nous agissons comme votre assistant personnel. Les mails sont rédigés de manière humaine et professionnelle, sans aucune mention publicitaire pour notre application. Pour le recruteur, c'est vous qui postulez avec un soin particulier.
+  <!-- CONTACT -->
+  <div class="contact-block">
+    <p><strong>Vous avez d'autres questions ?</strong><br>Notre équipe est disponible pour vous répondre.</p>
+    <a class="email-pill" href="mailto:postulajobinfo@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      postulajobinfo@gmail.com
+    </a>
+  </div>
 
 </div>
+
+<footer>
+  <strong>POSTULA JOB</strong> — Foire Aux Questions &nbsp;·&nbsp; Tous droits réservés
+</footer>
+
+<script>
+  function toggle(questionEl) {
+    const item = questionEl.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+
 </body>
 </html>

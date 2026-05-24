@@ -1,55 +1,426 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Condition Génerale PostulaJob</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CGU — POSTULA JOB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #0a4a35;
+      --green-mid: #1D9E75;
+      --green-light: #e1f5ee;
+      --green-accent: #2fcb92;
+      --amber: #f5a623;
+      --amber-light: #fef6e4;
+      --text-primary: #111;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --border: #e2e8e5;
+      --bg: #f7faf8;
+      --white: #fff;
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 15px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: var(--green-dark);
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% -10%, rgba(47,203,146,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(47,203,146,0.15);
+      border: 1px solid rgba(47,203,146,0.35);
+      color: var(--green-accent);
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 99px;
+      margin-bottom: 1.2rem;
+    }
+    .header-badge svg { width: 13px; height: 13px; }
+    header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    header h1 span { color: var(--green-accent); }
+    header p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.75rem;
+      font-weight: 300;
+    }
+    .header-line {
+      width: 40px;
+      height: 2px;
+      background: var(--green-accent);
+      margin: 1.5rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ─── TOC ─── */
+    .toc {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .toc-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .toc ol {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 1rem;
+    }
+    .toc ol li a {
+      font-size: 13px;
+      color: var(--green-dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.15s;
+    }
+    .toc ol li a:hover { color: var(--green-mid); }
+    .toc ol li a::before {
+      content: attr(data-num);
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green-accent);
+      min-width: 18px;
+    }
+
+    /* ─── SECTION ─── */
+    .section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 1.25rem;
+      transition: box-shadow 0.2s;
+    }
+    .section:hover { box-shadow: 0 4px 20px rgba(10,74,53,0.07); }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 1.1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--green-dark);
+      line-height: 1.3;
+    }
+
+    .section-body {
+      color: var(--text-secondary);
+      font-size: 14.5px;
+      line-height: 1.8;
+    }
+    .section-body ul {
+      margin: 0.6rem 0 0 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    .section-body ul li {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 5px;
+      align-items: flex-start;
+    }
+    .section-body ul li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      flex-shrink: 0;
+      margin-top: 9px;
+    }
+
+    /* ─── CALLOUT BOXES ─── */
+    .callout {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      margin-top: 1rem;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    .callout-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .callout.green {
+      background: var(--green-light);
+      color: #0a4a35;
+      border-left: 3px solid var(--green-mid);
+    }
+    .callout.amber {
+      background: var(--amber-light);
+      color: #7a4a00;
+      border-left: 3px solid var(--amber);
+    }
+    .callout strong { font-weight: 500; }
+
+    /* ─── EMAIL PILL ─── */
+    .email-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 5px 14px;
+      font-size: 13px;
+      color: var(--green-dark);
+      margin-top: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .email-pill:hover { border-color: var(--green-mid); background: var(--green-light); }
+    .email-pill svg { width: 14px; height: 14px; color: var(--green-mid); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--green-dark);
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      font-weight: 300;
+    }
+    footer strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+
+    @media (max-width: 540px) {
+      .toc ol { grid-template-columns: 1fr; }
+      header { padding: 2.5rem 1.25rem 2.25rem; }
+      .section { padding: 1.25rem; }
+    }
+  </style>
 </head>
 <body>
-    <div>
-        Conditions Générales d’Utilisation (CGU) - POSTULA JOB
 
-1. Objet du Service
+<header>
+  <div class="header-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Document officiel
+  </div>
+  <h1>Conditions Générales<br><span>d'Utilisation</span></h1>
+  <p>POSTULA JOB — Service d'assistance à la recherche d'emploi</p>
+  <div class="header-line"></div>
+</header>
 
-L'application POSTULA JOB propose un service d'assistance à la recherche d'emploi. L'équipe de POSTULA JOB effectue, au nom et pour le compte de l'utilisateur, des démarches de candidature (recherche d'offres et envoi de dossiers) auprès de recruteurs tiers, en échange d'une rémunération forfaitaire.
+<div class="container">
 
-2. Accès et Création de Compte
+  <!-- TABLE DES MATIÈRES -->
+  <div class="toc">
+    <div class="toc-title">Sommaire</div>
+    <ol>
+      <li><a href="#s1" data-num="1">Objet du Service</a></li>
+      <li><a href="#s2" data-num="2">Accès et Compte</a></li>
+      <li><a href="#s3" data-num="3">Mandat Gmail</a></li>
+      <li><a href="#s4" data-num="4">Obligations</a></li>
+      <li><a href="#s5" data-num="5">Tarifs & Paiement</a></li>
+      <li><a href="#s6" data-num="6">Données Personnelles</a></li>
+      <li><a href="#s7" data-num="7">Responsabilité & Résiliation</a></li>
+    </ol>
+  </div>
 
-Pour bénéficier du service, l'utilisateur doit :
-Être âgé d'au moins 18 ans (ou l'âge de la majorité légale en vigueur).
-Créer un compte Gmail dédié exclusivement aux prestations de POSTULA JOB.
-Fournir des informations exactes, sincères et à jour concernant son parcours professionnel.
-
-3. Mandat de Postulation et Accès Gmail
-
-En communiquant ses identifiants Gmail à POSTULA JOB, l'utilisateur donne mandat exprès à l'équipe de l'application pour :
-Se connecter au compte fourni.
-Envoyer des courriels de candidature en son nom.
-Gérer les premières interactions administratives avec les recruteurs.
-Note de sécurité : POSTULA JOB s'engage à n'utiliser ce compte que dans le cadre strict de la recherche d'emploi définie avec l'utilisateur.
-
-4. Obligations de l'Utilisateur
-
-L'utilisateur est seul responsable de la véracité du contenu de son CV et de ses diplômes. POSTULA JOB ne pourra être tenu responsable en cas de fausse déclaration de l'utilisateur auprès d'un employeur.
-
-5. Tarifs et Modalités de Paiement
-
-Le service est accessible moyennant le paiement d'un forfait (préciser ici le prix ou renvoyer vers la grille tarifaire).
-Le paiement est dû dès l'activation de la prestation de recherche.
-Absence de garantie d'embauche : POSTULA JOB s'engage sur une obligation de moyens (postuler de façon professionnelle et ciblée) mais ne peut garantir l'obtention d'un contrat de travail, celle-ci dépendant exclusivement de la décision des recruteurs.
-
-6. Protection des Données Personnelles (RGPD)
-
-POSTULA JOB collecte les données nécessaires à la postulation (nom, contact, photo, cv, lettre de motivation, diplômes).
-Confidentialité : Vos données ne sont jamais revendues à des tiers.
-Sécurisation : Les accès Gmail sont chiffrés et l'accès est restreint au personnel autorisé de POSTULA JOB. Le personnel de POSTULA JOB n’a nullement le droit d’utiliser vos coordonnées (adresse gmail, contact téléphonique, photo) à des fins personnels, le cas échéant, signalez cela à l’adresse suivante : postulajobinfo@gmail.com   
-
-7. Responsabilité et Résiliation
-
-Responsabilité : POSTULA JOB ne peut être tenu responsable des retards de réponse des recruteurs ou de la suppression du compte Gmail par le fournisseur (Google).
-Résiliation : L'utilisateur peut mettre fin au service à tout moment. Dès la fin de la prestation, il est fortement conseillé à l'utilisateur de modifier le mot de passe du compte Gmail dédié.
-
-
+  <!-- SECTION 1 -->
+  <div class="section" id="s1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">Objet du Service</div>
     </div>
+    <div class="section-body">
+      L'application POSTULA JOB propose un service d'assistance à la recherche d'emploi. L'équipe de POSTULA JOB effectue, au nom et pour le compte de l'utilisateur, des démarches de candidature (recherche d'offres et envoi de dossiers) auprès de recruteurs tiers, en échange d'une rémunération forfaitaire.
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section" id="s2">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">Accès et Création de Compte</div>
+    </div>
+    <div class="section-body">
+      Pour bénéficier du service, l'utilisateur doit :
+      <ul>
+        <li>Être âgé d'au moins 18 ans (ou l'âge de la majorité légale en vigueur).</li>
+        <li>Créer un compte Gmail dédié exclusivement aux prestations de POSTULA JOB.</li>
+        <li>Fournir des informations exactes, sincères et à jour concernant son parcours professionnel.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section" id="s3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">Mandat de Postulation et Accès Gmail</div>
+    </div>
+    <div class="section-body">
+      En communiquant ses identifiants Gmail à POSTULA JOB, l'utilisateur donne mandat exprès à l'équipe pour :
+      <ul>
+        <li>Se connecter au compte fourni.</li>
+        <li>Envoyer des courriels de candidature en son nom.</li>
+        <li>Gérer les premières interactions administratives avec les recruteurs.</li>
+      </ul>
+      <div class="callout green">
+        <span class="callout-icon">🔒</span>
+        <span><strong>Note de sécurité :</strong> POSTULA JOB s'engage à n'utiliser ce compte que dans le cadre strict de la recherche d'emploi définie avec l'utilisateur.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section" id="s4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title">Obligations de l'Utilisateur</div>
+    </div>
+    <div class="section-body">
+      L'utilisateur est seul responsable de la véracité du contenu de son CV et de ses diplômes. POSTULA JOB ne pourra être tenu responsable en cas de fausse déclaration de l'utilisateur auprès d'un employeur.
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section" id="s5">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title">Tarifs et Modalités de Paiement</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li>Le service est accessible moyennant le paiement d'un forfait (voir grille tarifaire).</li>
+        <li>Le paiement est dû dès l'activation de la prestation de recherche.</li>
+      </ul>
+      <div class="callout amber">
+        <span class="callout-icon">⚠️</span>
+        <span><strong>Absence de garantie d'embauche :</strong> POSTULA JOB s'engage sur une obligation de moyens (postuler de façon professionnelle et ciblée) mais ne peut garantir l'obtention d'un contrat de travail, celle-ci dépendant exclusivement de la décision des recruteurs.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section" id="s6">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title">Protection des Données Personnelles</div>
+    </div>
+    <div class="section-body">
+      POSTULA JOB collecte les données nécessaires à la postulation (nom, contact, photo, CV, lettre de motivation, diplômes).
+      <ul style="margin-top: 0.75rem;">
+        <li><strong>Confidentialité :</strong> Vos données ne sont jamais revendues à des tiers.</li>
+        <li><strong>Sécurisation :</strong> Les accès Gmail sont chiffrés et l'accès est restreint au personnel autorisé de POSTULA JOB.</li>
+        <li>Le personnel de POSTULA JOB n'a nullement le droit d'utiliser vos coordonnées à des fins personnelles.</li>
+      </ul>
+      <div class="callout green">
+        <span class="callout-icon">📩</span>
+        <div>
+          En cas d'abus, signalez-le immédiatement à :<br>
+          <a class="email-pill" href="mailto:postulajobinfo@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+            postulajobinfo@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section" id="s7">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-title">Responsabilité et Résiliation</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li><strong>Responsabilité :</strong> POSTULA JOB ne peut être tenu responsable des retards de réponse des recruteurs ou de la suppression du compte Gmail par le fournisseur (Google).</li>
+        <li><strong>Résiliation :</strong> L'utilisateur peut mettre fin au service à tout moment.</li>
+      </ul>
+      <div class="callout amber">
+        <span class="callout-icon">🔑</span>
+        <span>Dès la fin de la prestation, il est fortement conseillé à l'utilisateur de <strong>modifier le mot de passe</strong> du compte Gmail dédié.</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>POSTULA JOB</strong> — Conditions Générales d'Utilisation &nbsp;·&nbsp; Tous droits réservés
+</footer>
+
 </body>
 </html>
